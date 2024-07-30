@@ -72,16 +72,6 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/tvEmailError"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/mukta_regular"
-            android:text="@{login.emailError}"
-            android:textColor="@color/error"/>
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password"
@@ -103,13 +93,13 @@
             android:inputType="textPassword"/>
 
         <TextView
-            android:id="@+id/tvPasswordError"
+            android:id="@+id/tvError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/mukta_regular"
-            android:text="@{login.passwordError}"
+            android:text="@{login.errorMsg}"
             android:textColor="@color/error"/>
 
         <Button
@@ -120,9 +110,35 @@
             android:textSize="20sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_gravity="center"
             android:fontFamily="@font/mukta_semi_bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Don't have an account?"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mukta_regular"/>
+
+                <TextView
+                    android:id="@+id/navigateToSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="  Sign Up"
+                    android:textColor="@color/info_blue"
+                    android:fontFamily="@font/mukta_medium"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

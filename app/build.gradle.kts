@@ -16,7 +16,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.nano.modularapp.CustomTestRunner"
     }
 
     buildTypes {
@@ -56,9 +57,16 @@ dependencies {
     //Testing
     testImplementation(libs.test.core.live.data)
     testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ktx)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.runner)
+    androidTestImplementation(libs.androidx.espresso.rules)
     androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation(libs.androidx.fragment.manifest)
+    androidTestImplementation(libs.androidx.fragment)
+    androidTestImplementation(libs.hilt.instrument.test)
+    kaptAndroidTest(libs.hilt.compiler)
 
     //Retrofit
     implementation(libs.com.square)

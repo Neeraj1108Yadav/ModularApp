@@ -71,16 +71,6 @@
                 android:fontFamily="@font/mukta_regular"/>
 
             <TextView
-                android:id="@+id/tvEmailError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:fontFamily="@font/mukta_regular"
-                android:text="@{signup.inputEmailError}"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/error"/>
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Password"
@@ -102,12 +92,12 @@
                 android:inputType="textPassword"/>
 
             <TextView
-                android:id="@+id/tvPasswordError"
+                android:id="@+id/tvError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:fontFamily="@font/mukta_regular"
-                android:text="@{signup.inputPasswordError}"
+                app:errorText="@{signup.errorMsg}"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/error"/>
 
@@ -122,6 +112,32 @@
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/mukta_semi_bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Already have an account?"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/mukta_regular"/>
+
+                <TextView
+                    android:id="@+id/navigateToLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="  Login"
+                    android:textColor="@color/info_blue"
+                    android:fontFamily="@font/mukta_medium"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

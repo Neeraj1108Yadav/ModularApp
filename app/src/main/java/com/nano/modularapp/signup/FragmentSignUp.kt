@@ -35,6 +35,11 @@ class FragmentSignUp : Fragment() {
     }
 
     private fun setListener(){
+
+        binding.navigateToLogin.setOnClickListener {
+
+        }
+
         binding.btnSignUp.setOnClickListener {
             viewModel.registerUser("","")
         }

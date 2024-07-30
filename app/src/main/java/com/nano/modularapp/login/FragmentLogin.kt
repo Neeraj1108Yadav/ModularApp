@@ -20,8 +20,7 @@ class FragmentLogin : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
-    var emailError: ObservableField<String> = ObservableField("")
-    var passwordError: ObservableField<String> = ObservableField("")
+    var errorMsg: ObservableField<String> = ObservableField("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +43,10 @@ class FragmentLogin : Fragment() {
         viewModel.inputFieldError.observe(viewLifecycleOwner, Observer { state->
             when(state){
                 is ValidationState.EmailError->{
-                    emailError.set(state.error)
+                    errorMsg.set(getString(state.error))
                 }
                 is ValidationState.PasswordError->{
-                    passwordError.set(state.error)
+                    errorMsg.set(getString(state.error))
                 }
                 ValidationState.Success->{}
             }
@@ -55,9 +54,13 @@ class FragmentLogin : Fragment() {
     }
 
     private fun setListener(){
-        binding.btnLogin.setOnClickListener {
-            //viewModel.loginUser("","")
+
+        binding.navigateToSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentLogin_to_fragmentSignUp)
+        }
+
+        binding.btnLogin.setOnClickListener {
+            viewModel.loginUser("","")
         }
     }
 }

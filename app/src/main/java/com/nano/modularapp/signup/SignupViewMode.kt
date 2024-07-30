@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nano.modularapp.R
 import com.nano.modularapp.constant.Constant
 import com.nano.modularapp.model.UserRequest
 import com.nano.modularapp.repo.UserRepository
@@ -19,11 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignupViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel(){
 
-    private var _inputEmailError:MutableLiveData<String> = MutableLiveData()
-    val inputEmailError:LiveData<String> = _inputEmailError
-
-    private var _inputPasswordError:MutableLiveData<String> = MutableLiveData()
-    val inputPasswordError:LiveData<String> = _inputPasswordError
+    private var _errorMsg:MutableLiveData<Int> = MutableLiveData()
+    val errorMsg:LiveData<Int> = _errorMsg
 
     fun registerUser(email:String,password:String){
         if(validInputFields(email, password)){
@@ -35,19 +33,19 @@ class SignupViewModel @Inject constructor(private val userRepository: UserReposi
 
     private fun validInputFields(email:String,password:String): Boolean {
         return if(email.isEmpty()){
-            _inputEmailError.value = "Email field is empty"
+            _errorMsg.value = R.string.email_field_empty
             false
         }else if(!email.matches(Constant.EMAIL_REGEX.toRegex())){
-            _inputEmailError.value = "Invalid email"
+            _errorMsg.value = R.string.email_invalid
             false
         }else if(password.isEmpty()){
-            _inputPasswordError.value = "Password field is empty"
+            _errorMsg.value = R.string.password_field_empty
             false
         }else if(password.length < 6){
-            _inputPasswordError.value = "Minimum length of password should be 6"
+            _errorMsg.value = R.string.password_minimum_length
             false
         }else if(password.length > 15){
-            _inputPasswordError.value = "Maximum length of password should be 15"
+            _errorMsg.value = R.string.password_maximum_length
             false
         }else{
             true
