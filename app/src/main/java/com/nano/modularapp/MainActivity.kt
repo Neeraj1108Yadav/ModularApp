@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,11 +31,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         //https://medium.com/androiddevelopers/navigationui-d21fd4f5c318
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragmentController) as NavHostFragment
         navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        setSupportActionBar(toolbar)
-        setupActionBarWithNavController(navController,appBarConfiguration)
+        NavigationUI.setupActionBarWithNavController(this,navController,appBarConfiguration)
     }
 }

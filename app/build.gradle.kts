@@ -17,7 +17,7 @@ android {
         versionName = "1.0"
 
         //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunner = "com.nano.modularapp.CustomTestRunner"
+        testInstrumentationRunner = "com.nano.modularapp.HiltTestRunner"
     }
 
     buildTypes {
@@ -54,17 +54,40 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    //Testing
-    testImplementation(libs.test.core.live.data)
+    //Dependencies for local unit test
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ktx)
-    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.androidx.arch.core)
+    testImplementation(libs.androidx.navigation.testing)
+    testImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.androidx.espresso.runner)
+
+    //Dependencies for JVM Test
+    //testImplementation(libs.androidx.test.core.ktx)
+    testImplementation(libs.androidx.test.ext.junit.ktx)
+    testImplementation(libs.androidx.test.rules)
+    //debugImplementation(libs.androidx.fragment.manifest)
+    debugImplementation(libs.androidx.fragment.testing)
+    //implementation(libs.androidx.fragment)
+    implementation(libs.androidx.core)
+
+    //Dependencies for Instrument Test
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.core.ktx)
+    androidTestImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
+    androidTestImplementation(libs.androidx.arch.core)
+    androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.runner)
-    androidTestImplementation(libs.androidx.espresso.rules)
     androidTestImplementation(libs.androidx.navigation.testing)
-    androidTestImplementation(libs.androidx.fragment.manifest)
-    androidTestImplementation(libs.androidx.fragment)
+    //androidTestImplementation(libs.androidx.fragment)
+    //androidTestImplementation(libs.androidx.fragment.testing)
+
+    //Dependency Injection HILT
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    //Hilt Testing
     androidTestImplementation(libs.hilt.instrument.test)
     kaptAndroidTest(libs.hilt.compiler)
 
@@ -73,19 +96,13 @@ dependencies {
     implementation(libs.com.gson)
     implementation(libs.com.interceptor)
 
-    //Dependency Injection HILT
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
     //Coroutines
     implementation(libs.coroutine.android)
 
-    //Lifecycle
+    //Architecture Components
     implementation(libs.viewmodel)
     implementation(libs.livedata)
     implementation(libs.lifecycle)
-
-    //Navigation
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.navigation.ui)
 }
