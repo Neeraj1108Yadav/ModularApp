@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -94,7 +95,8 @@ dependencies {
     //Retrofit
     implementation(libs.com.square)
     implementation(libs.com.gson)
-    implementation(libs.com.interceptor)
+    implementation(libs.squareup.okhttp)
+    testImplementation(libs.squareup.okhttp.mockwebserver)
 
     //Coroutines
     implementation(libs.coroutine.android)

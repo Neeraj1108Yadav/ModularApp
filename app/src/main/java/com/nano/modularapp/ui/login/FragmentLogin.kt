@@ -1,4 +1,4 @@
-package com.nano.modularapp.login
+package com.nano.modularapp.ui.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.nano.modularapp.R
 import com.nano.modularapp.databinding.FragmentLoginBinding
+import com.nano.modularapp.model.UserResponse
+import com.nano.modularapp.network.NetworkResult
 import com.nano.modularapp.validation.ValidationState
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentLogin : Fragment() {
@@ -21,7 +25,7 @@ class FragmentLogin : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
     var errorMsg: ObservableField<String> = ObservableField("")
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -36,6 +40,7 @@ class FragmentLogin : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeInputFieldsError()
+        observeUserLogin()
         setListener()
     }
 
@@ -53,6 +58,22 @@ class FragmentLogin : Fragment() {
         })
     }
 
+    private fun observeUserLogin(){
+        viewModel.userLogin.observe(viewLifecycleOwner, Observer { result->
+            when(result){
+                is NetworkResult.Success->{
+                    navigateToHome(result.data!!)
+                }
+                is NetworkResult.Failure->{
+                    errorMsg.set(result.message)
+                }
+                is NetworkResult.Loading->{
+
+                }
+            }
+        })
+    }
+
     private fun setListener(){
 
         binding.navigateToSignUp.setOnClickListener {
@@ -60,7 +81,12 @@ class FragmentLogin : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            viewModel.loginUser("","")
+            viewModel.loginUser(binding.editTextEmail.text.toString(),binding.editTextPassword.text.toString())
         }
+    }
+
+    private fun navigateToHome(userResponse: UserResponse){
+        val action = FragmentLoginDirections.actionLoginFragmentToFragmentHome(userResponse.user.email)
+        view?.findNavController()?.navigate(action)
     }
 }

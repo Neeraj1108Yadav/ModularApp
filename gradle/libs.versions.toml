@@ -11,7 +11,7 @@ material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
 retrofit = "2.11.0"
-interceptor = "4.12.0"
+okhttp = "4.12.0"
 hilt = "2.51.1"
 coroutine = "1.8.0"
 lifecycle_version = "2.8.4"
@@ -48,7 +48,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 
 com-square = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 com-gson = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
-com-interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor"}
+squareup-okhttp = {group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
+squareup-okhttp-mockwebserver = {group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp"}
 
 #Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}

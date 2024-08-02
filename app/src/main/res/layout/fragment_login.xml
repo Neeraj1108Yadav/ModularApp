@@ -7,13 +7,13 @@
 
         <variable
             name="login"
-            type="com.nano.modularapp.login.FragmentLogin" />
+            type="com.nano.modularapp.ui.login.FragmentLogin" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.FragmentLogin">
+        tools:context=".ui.login.FragmentLogin">
 
         <TextView
             android:id="@+id/tvSignUpTitle"
@@ -66,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:text="neerajhome41@yopmail.com"
             android:layout_marginTop="5dp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/mukta_regular"
@@ -86,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:text="123456"
             android:layout_marginTop="5dp"
             android:textColor="@color/text_color"
             android:fontFamily="@font/mukta_regular"

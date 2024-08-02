@@ -6,13 +6,13 @@
     <data>
         <variable
             name="signup"
-            type="com.nano.modularapp.signup.SignupViewModel" />
+            type="com.nano.modularapp.ui.signup.SignupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".signup.FragmentSignUp">
+        tools:context=".ui.signup.FragmentSignUp">
 
         <TextView
             android:id="@+id/tvSignUpTitle"

@@ -7,16 +7,34 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.nano.modularapp.login.FragmentLogin"
+        android:name="com.nano.modularapp.ui.login.FragmentLogin"
         android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentSignUp"
             app:destination="@id/fragmentSignUp" />
+        <action
+            android:id="@+id/action_loginFragment_to_fragmentHome"
+            app:destination="@id/fragmentHome"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSignUp"
-        android:name="com.nano.modularapp.signup.FragmentSignUp"
+        android:name="com.nano.modularapp.ui.signup.FragmentSignUp"
         android:label="Sign Up"
-        tools:layout="@layout/fragment_sign_up"/>
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_fragmentSignUp_to_fragmentHome"
+            app:destination="@id/fragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.nano.modularapp.ui.home.FragmentHome"
+        android:label="FragmentHome"
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
 </navigation>

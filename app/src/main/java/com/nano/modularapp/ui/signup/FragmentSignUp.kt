@@ -1,4 +1,4 @@
-package com.nano.modularapp.signup
+package com.nano.modularapp.ui.signup
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import com.nano.modularapp.R
 import com.nano.modularapp.databinding.FragmentSignUpBinding
-import com.nano.modularapp.validation.ValidationState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
