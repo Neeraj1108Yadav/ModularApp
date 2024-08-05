@@ -96,6 +96,7 @@ dependencies {
     implementation(libs.com.square)
     implementation(libs.com.gson)
     implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.logging.interceptor)
     testImplementation(libs.squareup.okhttp.mockwebserver)
 
     //Coroutines
