@@ -5,6 +5,6 @@ package com.nano.modularapp.constant
  */
 object Constant {
 
-    const val BASE_URL = "https://test.dhyanaring.com"
+    const val BASE_URL = "https://xxx.xxxxx.com"
     const val EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"
 }

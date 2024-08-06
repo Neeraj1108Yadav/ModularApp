@@ -1,8 +1,10 @@
 package com.nano.modularapp.di
 
 import android.content.Context
+import com.nano.modularapp.api.AppService
 import com.nano.modularapp.api.UserService
 import com.nano.modularapp.constant.Constant
+import com.nano.modularapp.network.AuthInterceptor
 import com.nano.modularapp.network.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
@@ -26,35 +28,46 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient):Retrofit{
+    fun provideRetrofit(): Retrofit.Builder {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
             .baseUrl(Constant.BASE_URL)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserService(retrofitBuilder: Retrofit.Builder,
+                           okHttpClient: OkHttpClient.Builder,): UserService {
+        return retrofitBuilder.client(okHttpClient.build())
+             .build()
+             .create(UserService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAppService(retrofitBuilder: Retrofit.Builder,
+                         okHttpClient: OkHttpClient.Builder,
+                         authInterceptor: AuthInterceptor): AppService {
+        okHttpClient.addInterceptor(authInterceptor)
+        return retrofitBuilder.client(okHttpClient.build())
             .build()
+            .create(AppService::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideUserService(retrofit: Retrofit): UserService{
-        return retrofit.create(UserService::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideNetworkConnectionInterceptor(
-        networkConnectionInterceptor:NetworkConnectionInterceptor,
-        loggingInterceptor:HttpLoggingInterceptor
-    ) : OkHttpClient{
+    fun provideOkHttpBuilder(
+        networkConnectionInterceptor: NetworkConnectionInterceptor,
+        loggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient.Builder {
         return OkHttpClient.Builder()
             .addInterceptor(networkConnectionInterceptor)
             .addInterceptor(loggingInterceptor)
-            .build()
     }
 
     @Singleton
     @Provides
-    fun provideLoggingInterceptor():HttpLoggingInterceptor{
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
@@ -62,7 +75,13 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideNetworkInterceptor(@ApplicationContext context: Context):NetworkConnectionInterceptor{
+    fun provideNetworkInterceptor(@ApplicationContext context: Context): NetworkConnectionInterceptor {
         return NetworkConnectionInterceptor(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthorizationInterceptor(): AuthInterceptor {
+        return AuthInterceptor()
     }
 }
