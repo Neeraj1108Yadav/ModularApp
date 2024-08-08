@@ -27,11 +27,13 @@ android {
             isShrinkResources = true
             isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            resValue("string", "clear_text_config","false")
         }
         debug {
             isMinifyEnabled = false
             isShrinkResources = false
             isDebuggable = true
+            resValue("string", "clear_text_config","true")
         }
     }
     compileOptions {
@@ -44,6 +46,13 @@ android {
 
     buildFeatures {
         dataBinding = true
+    }
+
+    sourceSets{
+        this.getByName("androidTest"){
+            res.srcDir("res")
+            assets.srcDir("assets")
+        }
     }
 }
 
@@ -89,8 +98,10 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     //Hilt Testing
-    androidTestImplementation(libs.hilt.instrument.test)
+    androidTestImplementation(libs.hilt.test)
+    testImplementation(libs.hilt.test)
     kaptAndroidTest(libs.hilt.compiler)
+    kaptTest(libs.hilt.compiler)
 
     //Retrofit
     implementation(libs.com.square)
@@ -98,9 +109,12 @@ dependencies {
     implementation(libs.squareup.okhttp)
     implementation(libs.squareup.okhttp.logging.interceptor)
     testImplementation(libs.squareup.okhttp.mockwebserver)
+    androidTestImplementation(libs.squareup.okhttp.mockwebserver)
 
     //Coroutines
     implementation(libs.coroutine.android)
+    androidTestImplementation(libs.coroutine.android.test)
+    testImplementation(libs.coroutine.android.test)
 
     //Architecture Components
     implementation(libs.viewmodel)

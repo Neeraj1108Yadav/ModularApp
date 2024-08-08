@@ -8,10 +8,16 @@
       <SelectionState runConfigName="FragmentLoginInstrumentedTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="test_blankField_expectedEmptyField()">
+      <SelectionState runConfigName="FragmentLoginTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="HiltTestActivity">
+      <SelectionState runConfigName="NetworkUtilTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="UserRepositoryTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="test_login_response()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
