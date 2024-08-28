@@ -11,12 +11,9 @@ import com.nano.modularapp.model.UserRequest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.setMain
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert.*
 
@@ -50,7 +47,7 @@ class UserRepositoryTest {
     fun setUp() {
         hiltRule.inject()
         testDispatcher = UnconfinedTestDispatcher()
-        Dispatchers.setMain(testDispatcher)
+        //Dispatchers.setMain(testDispatcher)
         MockServer.server.start(8080)
     }
 
@@ -78,6 +75,6 @@ class UserRepositoryTest {
     @After
     fun tearDown() {
         MockServer.server.shutdown()
-        Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
+        //Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
     }
 }

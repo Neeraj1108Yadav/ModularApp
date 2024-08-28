@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".ModularApplication"
+        android:name="com.nano.modularapp.CustomModular_Application"
+        tools:replace="name"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

@@ -27,7 +27,7 @@ import javax.inject.Singleton
 @Module
 open class NetworkModule {
 
-    protected open fun baseUrl() = Constant.MOCK_URL.toHttpUrl()
+    protected open fun baseUrl() = Constant.BASE_URL.toHttpUrl()
 
     @Singleton
     @Provides

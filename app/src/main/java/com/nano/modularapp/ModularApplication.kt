@@ -8,5 +8,5 @@ import dagger.hilt.android.HiltAndroidApp
  */
 
 @HiltAndroidApp
-class ModularApplication : Application(){
+class ModularApplication : BaseApp(){
 }
