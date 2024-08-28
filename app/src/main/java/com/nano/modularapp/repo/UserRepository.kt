@@ -1,8 +1,10 @@
 package com.nano.modularapp.repo
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nano.modularapp.api.UserService
+import com.nano.modularapp.constant.Constant
 import com.nano.modularapp.model.User
 import com.nano.modularapp.model.UserRequest
 import com.nano.modularapp.model.UserResponse
@@ -45,12 +47,13 @@ class UserRepository @Inject constructor(private val userService: UserService) :
 
     private fun handleResponse(response: Response<UserResponse>) {
         try {
+            Log.d(Constant.TAG,"Thread = ${Thread.currentThread()}")
             if (response.isSuccessful && response.body() != null) {
                 _networkResultState.postValue(NetworkResult.Success(response.body()))
             } else if (response.errorBody() != null) {
                 val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
                 _networkResultState.postValue(NetworkResult.Failure(errorObj.optString("message")))
-            } else if(response.code() == 503){
+            } else if(response.code() == 503){ // Internet Connectivity Failure Manual Code
                 _networkResultState.postValue(NetworkResult.Failure(response.raw().message))
             }else{
                 _networkResultState.postValue(NetworkResult.Failure("Something went wrong"))

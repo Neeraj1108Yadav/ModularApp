@@ -17,8 +17,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunner = "com.nano.modularapp.HiltTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "com.nano.modularapp.HiltTestRunner"
     }
 
     buildTypes {
@@ -50,9 +50,18 @@ android {
 
     sourceSets{
         this.getByName("androidTest"){
-            res.srcDir("res")
-            assets.srcDir("assets")
+            res.srcDir("src/androidTest/res")
+            assets.srcDir("src/androidTest/assets")
         }
+
+        this.getByName("test"){
+            res.srcDir("src/test/res")
+            assets.srcDir("src/test/assets")
+        }
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
     }
 }
 
@@ -72,9 +81,12 @@ dependencies {
     testImplementation(libs.androidx.espresso.runner)
 
     //Dependencies for JVM Test
-    //testImplementation(libs.androidx.test.core.ktx)
     testImplementation(libs.androidx.test.ext.junit.ktx)
+    testImplementation(libs.androidx.test.ext.junit)
     testImplementation(libs.androidx.test.rules)
+    testImplementation(libs.androidx.arch.core)
+    testImplementation(libs.junit)
+    testImplementation(libs.org.robolectric)
     //debugImplementation(libs.androidx.fragment.manifest)
     debugImplementation(libs.androidx.fragment.testing)
     //implementation(libs.androidx.fragment)
@@ -85,7 +97,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.core.ktx)
     androidTestImplementation(libs.androidx.core)
     androidTestImplementation(libs.androidx.test.ext.junit.ktx)
-    androidTestImplementation(libs.androidx.arch.core)
+    androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.runner)

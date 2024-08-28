@@ -1,0 +1,15 @@
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OWUxMDk3MzhkYjdiMDBlY2Y0ZTA1YiIsImlhdCI6MTcyMzAxODA3OX0.7L6nXlLEIhLHFaWQ_pVNvzqWBQkrLduCsnjojd9etY4",
+    "user": {
+        "_id": "669e109738db7b00ecf4e05b",
+        "email": "neerajhome40@yopmail.com",
+        "dob": "Invalid Date",
+        "tags": [],
+        "user_goals": [],
+        "goal_settings": {},
+        "verified": false,
+        "os": "Android",
+        "account_type": "dhyana",
+        "med_types": []
+    }
+}
