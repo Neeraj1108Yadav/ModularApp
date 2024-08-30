@@ -17,8 +17,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        //testInstrumentationRunner = "com.nano.modularapp.HiltTestRunner"
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.nano.modularapp.CustomTestRunner"
     }
 
     buildTypes {
@@ -58,6 +58,8 @@ android {
             res.srcDir("src/test/res")
             assets.srcDir("src/test/assets")
         }
+
+        //sourceSets["main"].manifest.srcFile("src/debug/AndroidManifest.xml")
     }
 
     testOptions {
@@ -87,9 +89,8 @@ dependencies {
     testImplementation(libs.androidx.arch.core)
     testImplementation(libs.junit)
     testImplementation(libs.org.robolectric)
-    //debugImplementation(libs.androidx.fragment.manifest)
-    debugImplementation(libs.androidx.fragment.testing)
-    //implementation(libs.androidx.fragment)
+    debugImplementation(libs.androidx.fragment.manifest)
+    //implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core)
 
     //Dependencies for Instrument Test
@@ -102,8 +103,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.runner)
     androidTestImplementation(libs.androidx.navigation.testing)
-    //androidTestImplementation(libs.androidx.fragment)
-    //androidTestImplementation(libs.androidx.fragment.testing)
+    androidTestImplementation(libs.androidx.fragment.testing)
 
     //Dependency Injection HILT
     implementation(libs.hilt.android)
