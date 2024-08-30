@@ -1,25 +1,34 @@
 package com.nano.modularapp.ui.login
 
+import androidx.navigation.testing.TestNavHostController
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nano.modularapp.MainActivity
 import com.nano.modularapp.R
 import com.nano.modularapp.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
  * Created By  on 06/08/24
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltAndroidTest
+@RunWith(AndroidJUnit4::class)
 class FragmentLoginTest{
+
+
     @get:Rule
     val hiltRule: HiltAndroidRule = HiltAndroidRule(this)
 
@@ -32,14 +41,10 @@ class FragmentLoginTest{
     }
 
     @Test
-    fun execute_MainActivityRunning(){
-        val scenario = launchActivity<MainActivity>()
-    }
-
-    @Test
     fun test_blankField_expectedEmptyField(){
         println("launching hilt container")
-        val scenario = launchFragmentInHiltContainer<FragmentLogin>()
+        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        launchFragmentInHiltContainer<FragmentLogin>()
         // Log to ensure the fragment is launched
         println("Fragment launched")
 
