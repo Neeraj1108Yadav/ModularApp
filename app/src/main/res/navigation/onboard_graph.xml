@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentSignUp"
-            app:destination="@id/fragmentSignUp" />
+            app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_loginFragment_to_fragmentHome"
             app:destination="@id/fragmentHome"
@@ -20,7 +20,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentSignUp"
+        android:id="@+id/signUpFragment"
         android:name="com.nano.modularapp.ui.signup.FragmentSignUp"
         android:label="Sign Up"
         tools:layout="@layout/fragment_sign_up">
