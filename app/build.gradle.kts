@@ -59,7 +59,7 @@ android {
             assets.srcDir("src/test/assets")
         }
 
-        sourceSets["main"].manifest.srcFile("src/debug/AndroidManifest.xml")
+        //sourceSets["main"].manifest.srcFile("src/debug/AndroidManifest.xml")
     }
 
     testOptions {
